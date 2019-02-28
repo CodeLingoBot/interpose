@@ -4,8 +4,7 @@ import (
 	"net/http"
 )
 
-/*
-Middleware that sends an application/json header
+/* Middleware that sends an application/json header
 */
 func Json() func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {

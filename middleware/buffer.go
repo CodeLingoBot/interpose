@@ -6,8 +6,7 @@ import (
 	"github.com/goods/httpbuf"
 )
 
-/*
-Middleware that buffers all http output. This permits
+/* Middleware that buffers all http output. This permits
 output to be written before headers are sent. Downside:
 no output is sent until it's all ready to be sent, so
 this breaks streaming.

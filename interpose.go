@@ -32,12 +32,12 @@ type Middleware struct {
 	Wares []func(http.Handler) http.Handler
 }
 
-// Return an empty middleware that is ready to use
+// New returns an empty middleware that is ready to use
 func New() *Middleware {
 	return &Middleware{}
 }
 
-// Add a piece of middleware which is an http.Handler generator
+// Use adds a piece of middleware which is an http.Handler generator
 // (signature: func(http.Handler)http.Handler) which, somewhere before it
 // finishes, is expected to call .ServeHTTP on the handler that is passed to it.
 // Failure to call .ServeHTTP within the http.Handler generator will cause part
@@ -46,7 +46,7 @@ func (mw *Middleware) Use(handler func(http.Handler) http.Handler) {
 	mw.Wares = append(mw.Wares, handler)
 }
 
-// Add a piece of middleware which is simply any http.Handler
+// UseHandler adds a piece of middleware which is simply any http.Handler
 // (signature: http.Handler). Unlike with Use, we will automatically call
 // .ServeHTTP to ensure that the rest of the middleware stack is called.
 func (mw *Middleware) UseHandler(handler http.Handler) {

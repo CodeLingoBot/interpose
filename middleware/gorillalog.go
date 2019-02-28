@@ -7,8 +7,7 @@ import (
 	"github.com/carbocation/handlers"
 )
 
-/*
-Wraps the Gorilla Logger
+/* Wraps the Gorilla Logger
 */
 func GorillaLog() func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
